@@ -2,25 +2,36 @@
     {
         "name" : "menu 1", 
         "infoList" : [
-            "info 1", 
-            "info 2", 
-            "info 3"
+            {
+                "name" : "Lights out !",
+                "link" : "lights-out"
+            },
+            {
+                "name" : "Jeu 2",
+                "link" : "home"
+            },
+            {
+                "name" : "Jeu 3",
+                "link" : "home"
+            }
         ]
     },
     {
         "name" : "menu 2", 
         "infoList" : [
-            "info 4", 
-            "info 5", 
-            "info 6"
+            {
+                "name" : "placeholder",
+                "link" : "/games/lights-out"
+            }
         ]
     },
     {
         "name" : "menu 3", 
         "infoList" : [
-            "info 7", 
-            "info 8", 
-            "info 9"
+            {
+                "name" : "placeholder",
+                "link" : "/games/lights-out"
+            }
         ]
     }
 ]

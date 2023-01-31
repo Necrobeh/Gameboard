@@ -21,7 +21,6 @@ export class MenuComponent {
     this.dataS.getData().subscribe(data => {
       
       this.menuList = data;
-      console.log(this.menuList);
     })
   }
 }

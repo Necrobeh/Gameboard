@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LightsOutGameComponent } from './components/lights-out-game/lights-out-game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    LightsOutGameComponent
   ],
   imports: [
     BrowserModule,

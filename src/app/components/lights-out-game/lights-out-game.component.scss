@@ -1,0 +1,32 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+}
+
+.big-square{
+    display: flex;
+    flex-wrap: wrap;
+    height: 600px;
+    width: 600px;
+    background-color: darkgray;
+}
+
+.small-square-ON{
+    background-color: greenyellow;
+    border: 1px solid black;
+    height: 198px;
+    width: 198px;
+}
+
+.small-square-OFF{
+    background-color: red;
+    border: 1px solid black;
+    height: 198px;
+    width: 198px;
+}
+
+a{
+    margin: 10px;
+}

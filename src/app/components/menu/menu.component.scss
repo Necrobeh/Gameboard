@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     width: 250px;
-    height: 250px;
+    height: 150px;
     background-color: green;
     transition: 1s;
     &:hover + .child-block{
@@ -35,7 +35,9 @@ p{
 }
 
 a{
+    display: block;
     text-decoration: none;
     color: white;
     text-align: center;
+    margin-bottom: 5px;
 }
