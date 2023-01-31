@@ -1,0 +1,41 @@
+.menu-container{
+    display: inline-table;
+}
+
+.parent-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+    background-color: green;
+    transition: 1s;
+    &:hover + .child-block{
+        height: fit-content;
+        transition: 1s;
+    }
+}
+
+.child-block{
+    width: 250px;
+    height: 0px;
+    z-index: -1;
+    background-color: green;
+    transition: 1s;    
+    &:hover{
+        height: fit-content;
+        transition: 1s;
+    }
+}
+
+p{
+    margin-top: 0px;
+    color: white;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}

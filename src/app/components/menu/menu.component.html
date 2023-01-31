@@ -1,0 +1,8 @@
+<div class="menu-container" *ngFor="let menu of menuList" >
+    <div class="parent-block">
+        <p>{{menu.name}}</p>
+    </div>
+    <div class="child-block">
+        <p *ngFor="let info of menu.infoList" >{{info}}</p>
+    </div>
+</div>
