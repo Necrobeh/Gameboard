@@ -1,0 +1,30 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding : 100px
+}
+
+.puzzle{
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.puzzle-piece{
+    background-color: pink;
+    width: 200px;
+    height : 200px;
+    background-image: url(../../../assets/golden.png);
+    background-size: 600px;
+}
+
+.void-piece{
+    width: 200px;
+    height : 200px;
+}
+
+a{
+    margin-top: 10px;
+}

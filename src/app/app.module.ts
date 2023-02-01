@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LightsOutGameComponent } from './components/lights-out-game/lights-out-game.component';
+import { PuzzleComponent } from './components/puzzle/puzzle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    LightsOutGameComponent
+    LightsOutGameComponent,
+    PuzzleComponent
   ],
   imports: [
     BrowserModule,

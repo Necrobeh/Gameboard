@@ -13,6 +13,6 @@ export class DataService {
   constructor(public http : HttpClient) { }
 
   getData() : Observable<Menu[]> {
-    return this.http.get<Menu[]>("assets/data.json");
+    return this.http.get<Menu[]>("assets/menu.json");
   }
 }

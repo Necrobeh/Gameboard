@@ -1,0 +1,19 @@
+<div class="page">
+    <div class="puzzle">
+        <div [ngStyle]="{
+            backgroundPosition:
+            piece.order === 1 ? 'top left' : '' ||
+            piece.order === 2 ? 'top' : '' ||
+            piece.order === 3 ? 'top right' : '' ||
+            piece.order === 4 ? 'left' : '' ||
+            piece.order === 5 ? 'center' : '' ||
+            piece.order === 6 ? 'right' : '' ||
+            piece.order === 7 ? 'bottom left' : '' ||
+            piece.order === 8 ? 'bottom' : '' ||
+            piece.order === 9 ? 'bottom right' : '' 
+        }" [ngClass]="{'puzzle-piece' : piece.isPiece === true, 'void-piece' : piece.isPiece === false}"
+            (click)="detectVoidPiece(piece.xPos, piece.yPos)" 
+            *ngFor="let piece of puzzle"></div>
+    </div>
+    <a [routerLink]="['/home']">Back to Home</a>
+</div>
