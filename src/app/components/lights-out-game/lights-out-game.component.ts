@@ -41,12 +41,13 @@ export class LightsOutGameComponent {
   resetIfAllIsTheSame(){
     if(this.checkIfAllTheSame() === (0 || 9)){
       this.shuffleLights();
-      console.log("!");
     }
   }
 
   win(){
+    setTimeout(()=>
       this.router.navigateByUrl("/home")
+    )
   }
 
   switchLights(xFound : number, yFound : number) : void{
@@ -63,8 +64,7 @@ export class LightsOutGameComponent {
     lightsToSwitch.map(light => light.activated = !light.activated)
 
     if(this.checkIfAllTheSame() === 9){
-      setTimeout(()=>
-      this.win(), 500)
+      this.win();
     }
   }
 }
