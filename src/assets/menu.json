@@ -11,8 +11,8 @@
                 "link" : "puzzle"
             },
             {
-                "name" : "Jeu 3",
-                "link" : "home"
+                "name" : "Tic-Tac-Toe",
+                "link" : "tic-tac-toe"
             }
         ]
     },

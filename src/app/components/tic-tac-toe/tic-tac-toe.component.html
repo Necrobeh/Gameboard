@@ -1,0 +1,16 @@
+<div class="page">
+    <div class="tic-tac-toe">
+        <div class="box"
+        [ngStyle]="
+        {backgroundImage:
+            box.activatedByPlayer ? 'url(../../../assets/O.png)' : '' || 
+            box.activatedByNPC ? 'url(../../../assets/X.png)' : ''}
+        "
+        (click)="selectABox(box.x, box.y)"
+        *ngFor="let box of grid"
+        ></div>
+    </div>
+    <a [routerLink]="['/home']">Back to Home</a>
+</div>
+
+<button (click)="NPCPlaysRandom()" >NPC plays</button>

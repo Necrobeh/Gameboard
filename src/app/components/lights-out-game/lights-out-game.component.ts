@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterEvent, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { LightsOutSwitch } from 'src/app/models/lights-out-switch.model';
 
 @Component({
