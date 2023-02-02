@@ -10,42 +10,41 @@ import { TicTacToeBox } from 'src/app/models/tic-tac-toe-box.model';
 export class TicTacToeComponent {
 
   grid: TicTacToeBox[] = [
-    new TicTacToeBox(1, 3, false, false),
-    new TicTacToeBox(2, 3, false, false),
-    new TicTacToeBox(3, 3, false, false),
-    new TicTacToeBox(1, 2, false, false),
-    new TicTacToeBox(2, 2, false, false),
-    new TicTacToeBox(3, 2, false, false),
-    new TicTacToeBox(1, 1, false, false),
-    new TicTacToeBox(2, 1, false, false),
-    new TicTacToeBox(3, 1, false, false)
+    new TicTacToeBox(1, 3, "none"),
+    new TicTacToeBox(2, 3, "none"),
+    new TicTacToeBox(3, 3, "none"),
+    new TicTacToeBox(1, 2, "none"),
+    new TicTacToeBox(2, 2, "none"),
+    new TicTacToeBox(3, 2, "none"),
+    new TicTacToeBox(1, 1, "none"),
+    new TicTacToeBox(2, 1, "none"),
+    new TicTacToeBox(3, 1, "none")
   ]
 
   constructor(public router: Router) { }
 
   selectABox(xPos: number, yPos: number): void {
     this.makeACircle(xPos, yPos);
-    this.checkIfWin();
+    this.checkGameResult('player');
+    this.checkIfExAequo();
   }
 
   makeACircle(xPos: number, yPos: number): void {
     const boxToToggle: TicTacToeBox[] = this.grid.filter(box =>
       box.x === xPos && box.y === yPos);
-    if (boxToToggle[0].activatedByNPC === false && boxToToggle[0].activatedByPlayer === false) {
-      boxToToggle[0].activatedByPlayer = true;
+    if (boxToToggle[0].activated === 'none') {
+      boxToToggle[0].activated = 'player';
     }
   }
 
   makeACross(box: TicTacToeBox): void {
-    box.activatedByNPC = true;
-    console.log(box.activatedByNPC);
-
+    box.activated = 'npc';
   }
 
   checkfreeBoxes(): TicTacToeBox[] {
     let freeBoxes: TicTacToeBox[];
     return freeBoxes = this.grid.filter(box =>
-      box.activatedByNPC === false && box.activatedByPlayer === false)
+      box.activated === 'none')
   }
 
   selectRandomlyABoxAmongFreeBoxes(): number {
@@ -53,52 +52,67 @@ export class TicTacToeComponent {
     return randomBox;
   }
 
-  checkIfWin(): void {
-    this.straightWinCheck('x');
-    this.straightWinCheck('y');
-    this.diagonalWinCheck();
+  checkGameResult(target : string) : void {
+    this.straightWinCheck('x', target);
+    this.straightWinCheck('y', target);
+    this.diagonalWinCheck(target);
   }
 
-  straightWinCheck(axe: string) : void {
+  checkIfExAequo() : void {
+    if(this.checkfreeBoxes().length === 0){
+      this.exAequo();
+    }
+  }
+
+  straightWinCheck(axe: string, target: string): void {
     let direction: number[] = [0, 0, 0];
-    let directionToCheck : TicTacToeBox[] = [];
+    let directionToCheck: TicTacToeBox[] = [];
     for (let i = 0; i < direction.length; i++) {
       if (axe === 'x') {
         directionToCheck = this.grid.filter(box =>
           box.x === i + 1);
-      } else if(axe === 'y') {
+      } else if (axe === 'y') {
         directionToCheck = this.grid.filter(box =>
           box.y === i + 1);
       }
       let roundPerDirection = directionToCheck.filter(box =>
-        box.activatedByPlayer === true);
+        box.activated === target);
       if (roundPerDirection.length === 3) {
-        this.win();
+        if (target === 'player') {
+          this.win();
+        } else {
+          this.lose();
+        }
       }
     }
   }
 
-  diagonalWinCheck() : void {
-    if(
-      (this.grid[0].activatedByPlayer && 
-      this.grid[4].activatedByPlayer && 
-      this.grid[8].activatedByPlayer) ||
-      (this.grid[2].activatedByPlayer && 
-      this.grid[4].activatedByPlayer && 
-      this.grid[6].activatedByPlayer)){
+  diagonalWinCheck(target: string): void {
+    if (
+      (this.grid[0].activated === target &&
+        this.grid[4].activated === target &&
+        this.grid[8].activated === target) ||
+      (this.grid[2].activated === target &&
+        this.grid[4].activated === target &&
+        this.grid[6].activated === target)) {
+      if (target === 'player') {
         this.win();
+      } else {
+        this.lose();
       }
+    }
   }
 
   win() {
-    this.router.navigateByUrl('/home')
+    console.log("gagné !");
   }
 
   lose() {
+    console.log("perdu !");
   }
 
-  exAequo(){
-    
+  exAequo() {
+    console.log("ex aequo !");
   }
 
   NPCTurn() {
@@ -107,7 +121,8 @@ export class TicTacToeComponent {
 
   NPCPlaysRandom(): void {
     this.makeACross(this.checkfreeBoxes()[this.selectRandomlyABoxAmongFreeBoxes()])
-    console.log(this.checkfreeBoxes()[this.selectRandomlyABoxAmongFreeBoxes()]);
+    this.checkGameResult('npc');
+    this.checkIfExAequo();
   }
 
 }

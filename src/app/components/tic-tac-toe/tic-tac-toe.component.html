@@ -3,8 +3,8 @@
         <div class="box"
         [ngStyle]="
         {backgroundImage:
-            box.activatedByPlayer ? 'url(../../../assets/O.png)' : '' || 
-            box.activatedByNPC ? 'url(../../../assets/X.png)' : ''}
+            box.activated === 'player' ? 'url(../../../assets/O.png)' : '' || 
+            box.activated === 'npc' ? 'url(../../../assets/X.png)' : ''}
         "
         (click)="selectABox(box.x, box.y)"
         *ngFor="let box of grid"
