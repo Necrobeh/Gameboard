@@ -75,9 +75,9 @@ export class TicTacToeComponent {
         directionToCheck = this.grid.filter(box =>
           box.y === i + 1);
       }
-      let roundPerDirection = directionToCheck.filter(box =>
+      let tickedPerDirection = directionToCheck.filter(box =>
         box.activated === target);
-      if (roundPerDirection.length === 3) {
+      if (tickedPerDirection.length === 3) {
         if (target === 'player') {
           this.win();
         } else {
