@@ -124,4 +124,6 @@ export class TicTacToeComponent {
     this.checkIfExAequo();
   }
 
+  //commentaire divergent
+
 }
