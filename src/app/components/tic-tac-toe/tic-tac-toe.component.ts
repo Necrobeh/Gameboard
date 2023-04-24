@@ -125,4 +125,6 @@ export class TicTacToeComponent {
     this.checkIfExAequo();
   }
 
+  //commentaire de vérification
+
 }
