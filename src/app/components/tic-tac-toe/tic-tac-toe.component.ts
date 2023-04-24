@@ -65,9 +65,8 @@ export class TicTacToeComponent {
   }
 
   straightWinCheck(axe: string, target: string): void {
-    let direction: number[] = [0, 0, 0];
     let directionToCheck: TicTacToeBox[] = [];
-    for (let i = 0; i < direction.length; i++) {
+    for (let i = 0; i < 3; i++) {
       if (axe === 'x') {
         directionToCheck = this.grid.filter(box =>
           box.x === i + 1);
@@ -124,7 +123,5 @@ export class TicTacToeComponent {
     this.checkGameResult('npc');
     this.checkIfExAequo();
   }
-
-  //commentaire de vérification
 
 }
