@@ -9,7 +9,7 @@ import { TicTacToeBox } from 'src/app/models/tic-tac-toe-box.model';
 })
 export class TicTacToeComponent {
 
-  customGridSize: number = 5;
+  customGridSize: number = 3;
 
   customGrid: TicTacToeBox[] = [];
 

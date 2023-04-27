@@ -4,7 +4,11 @@
         [ngStyle]="
         {backgroundImage:
             box.activated === 'player' ? 'url(../../../assets/O.png)' : '' || 
-            box.activated === 'npc' ? 'url(../../../assets/X.png)' : ''}
+            box.activated === 'npc' ? 'url(../../../assets/X.png)' : '',
+            'backgroundSize.px': 600/customGridSize,
+            'width.px':600/customGridSize,
+            'height.px':600/customGridSize
+        }
         "
         (click)="selectABox(box.x, box.y)"
         *ngFor="let box of customGrid"
