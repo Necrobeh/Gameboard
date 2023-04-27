@@ -7,7 +7,7 @@
             box.activated === 'npc' ? 'url(../../../assets/X.png)' : ''}
         "
         (click)="selectABox(box.x, box.y)"
-        *ngFor="let box of grid"
+        *ngFor="let box of customGrid"
         ></div>
     </div>
     <a [routerLink]="['/home']">Back to Home</a>
