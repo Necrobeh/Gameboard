@@ -15,6 +15,8 @@ export class TicTacToeComponent {
 
   possibleDirections: TicTacToeBox[][] = [];
 
+  winStatus: string = 'none'
+
   constructor(public router: Router) { }
 
   ngOnInit() {
@@ -70,7 +72,9 @@ export class TicTacToeComponent {
 
   selectABox(xPos: number, yPos: number): void {
     this.makeACircle(xPos, yPos);
-    this.winCheck();
+    this.NPCPlaysAggressively();
+    console.log(this.winStatus);
+    
   }
 
   makeACircle(xPos: number, yPos: number): void {
@@ -79,19 +83,20 @@ export class TicTacToeComponent {
     if (boxToToggle[0].activated === 'none') {
       boxToToggle[0].activated = 'player';
     }
+    this.winCheck();
   }
 
   makeACross(box: TicTacToeBox): void {
     box.activated = 'npc';
   }
 
-  checkfreeBoxes(): TicTacToeBox[] {
-    return this.customGrid.filter(box =>
+  checkfreeBoxes(scope: TicTacToeBox[]): TicTacToeBox[] {
+    return scope.filter(box =>
       box.activated === 'none')
   }
 
   selectRandomlyABoxAmongFreeBoxes(): number {
-    let randomBox = Math.floor(Math.random() * this.checkfreeBoxes().length);
+    let randomBox = Math.floor(Math.random() * this.checkfreeBoxes(this.customGrid).length);
     return randomBox;
   }
 
@@ -104,7 +109,7 @@ export class TicTacToeComponent {
     }
     if (decisivePlay.length !== 0) {
       decisivePlay[0][0].activated === 'player' ? this.win() : this.lose();
-    } else if (this.checkfreeBoxes().length === 0) {
+    } else if (this.checkfreeBoxes(this.customGrid).length === 0) {
       this.exAequo();
     }
   }
@@ -117,15 +122,18 @@ export class TicTacToeComponent {
   }
 
   win() {
+    this.winStatus = 'player'
     console.log("gagné !");
   }
 
   lose() {
+    this.winStatus = 'npc'
     console.log("perdu !");
   }
 
   exAequo() {
     console.log("ex aequo !");
+    // this.router.navigateByUrl("/home")
   }
 
   NPCTurn() {
@@ -133,9 +141,35 @@ export class TicTacToeComponent {
   }
 
   NPCPlaysRandom(): void {
-    this.makeACross(this.checkfreeBoxes()[this.selectRandomlyABoxAmongFreeBoxes()])
+    this.makeACross(this.checkfreeBoxes(this.customGrid)[this.selectRandomlyABoxAmongFreeBoxes()]);
     this.winCheck();
+  }
 
+  NPCPlaysAggressively(): void {
+    if (this.findOpportunities() !== 0 && this.winStatus === 'none') {
+      this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities()])[0]);
+    } else {
+      this.NPCPlaysRandom();
+    }
+    this.winCheck();
+  }
+
+  findOpportunities(): number {
+    let lineToFocus: number = 0;
+    let bestOpportunities: TicTacToeBox[] = [];
+    for (let i = 0; i < this.possibleDirections.length; i++) {
+      let opportunity: TicTacToeBox[] = this.possibleDirections[i].filter(box => {
+        return box.activated === 'npc'
+      })
+      let obstruction: TicTacToeBox[] = this.possibleDirections[i].filter(box => {
+        return box.activated === 'player'
+      })
+      if (opportunity.length > bestOpportunities.length && obstruction.length === 0) {
+        bestOpportunities = opportunity
+        lineToFocus = i;
+      };
+    }
+    return lineToFocus;
   }
 
 }
