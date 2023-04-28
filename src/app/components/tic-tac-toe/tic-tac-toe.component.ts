@@ -9,7 +9,7 @@ import { TicTacToeBox } from 'src/app/models/tic-tac-toe-box.model';
 })
 export class TicTacToeComponent {
 
-  customGridSize: number = 3;
+  customGridSize: number = 4;
 
   customGrid: TicTacToeBox[] = [];
 
@@ -86,8 +86,7 @@ export class TicTacToeComponent {
   }
 
   checkfreeBoxes(): TicTacToeBox[] {
-    let freeBoxes: TicTacToeBox[];
-    return freeBoxes = this.customGrid.filter(box =>
+    return this.customGrid.filter(box =>
       box.activated === 'none')
   }
 
@@ -97,18 +96,24 @@ export class TicTacToeComponent {
   }
 
   winCheck() {
-    const decisivePlay : TicTacToeBox[][] =
-      this.possibleDirections.filter(axis => {
-        return axis[0].activated !== 'none' &&
-         axis[1].activated !== 'none' &&
-         axis[2].activated !== 'none' &&
-         (axis[0].activated === axis[1].activated && axis[0].activated === axis[2].activated)
-      })
-      if(decisivePlay.length !== 0){
-        decisivePlay[0][0].activated === 'player' ? this.win() : this.lose();    
-      }else if(this.checkfreeBoxes().length === 0){
-        this.exAequo();
+    const decisivePlay: TicTacToeBox[][] = [];
+    for (let i = 0; i < this.possibleDirections.length; i++) {
+      if (this.isSameValues(this.possibleDirections[i])) {
+        decisivePlay.push(this.possibleDirections[i])
       }
+    }
+    if (decisivePlay.length !== 0) {
+      decisivePlay[0][0].activated === 'player' ? this.win() : this.lose();
+    } else if (this.checkfreeBoxes().length === 0) {
+      this.exAequo();
+    }
+  }
+
+  isSameValues(array: TicTacToeBox[]): boolean {
+    return array.every(value => {
+      return value.activated === array[0].activated &&
+        value.activated !== 'none'
+    })
   }
 
   win() {
@@ -130,6 +135,7 @@ export class TicTacToeComponent {
   NPCPlaysRandom(): void {
     this.makeACross(this.checkfreeBoxes()[this.selectRandomlyABoxAmongFreeBoxes()])
     this.winCheck();
+
   }
 
 }
