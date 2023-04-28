@@ -71,10 +71,12 @@ export class TicTacToeComponent {
   }
 
   selectABox(xPos: number, yPos: number): void {
-    this.makeACircle(xPos, yPos);
-    this.NPCPlays();
-    console.log(this.winStatus);
-
+    this.isThereFreeBoxes();
+    if (this.winStatus === 'none') {
+      this.makeACircle(xPos, yPos);
+      this.NPCPlays();
+      console.log(this.winStatus);
+    }
   }
 
   makeACircle(xPos: number, yPos: number): void {
@@ -88,6 +90,16 @@ export class TicTacToeComponent {
 
   makeACross(box: TicTacToeBox): void {
     box.activated = 'npc';
+  }
+
+  isThereFreeBoxes() {
+    let isThereFreeboxes: TicTacToeBox[] = (this.customGrid.filter(box => {
+      return box.activated === 'none'
+    }))
+
+    if (isThereFreeboxes.length === 0) {
+      this.winStatus = 'ex aequo'
+    }
   }
 
   checkfreeBoxes(scope: TicTacToeBox[]): TicTacToeBox[] {
@@ -132,6 +144,7 @@ export class TicTacToeComponent {
   }
 
   exAequo() {
+    this.winStatus = 'ex aequo'
     console.log("ex aequo !");
     // this.router.navigateByUrl("/home")
   }
@@ -146,14 +159,17 @@ export class TicTacToeComponent {
   }
 
   NPCPlays(): void {
-    if (this.findOpportunities('player') !== -1) {
-      this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('player')])[0]);
-    } else if (this.findOpportunities('npc') !== 0 && this.winStatus === 'none') {
-      this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('npc')])[0]);
-    } else {
-      this.NPCPlaysRandom();
+    this.isThereFreeBoxes();
+    if (this.winStatus === 'none') {
+      if (this.findOpportunities('player') !== -1) {
+        this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('player')])[0]);
+      } else if (this.findOpportunities('npc') !== 0 && this.winStatus === 'none') {
+        this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('npc')])[0]);
+      } else {
+        this.NPCPlaysRandom();
+      }
+      this.winCheck();
     }
-    this.winCheck();
   }
 
   findOpportunities(target: string): number {
