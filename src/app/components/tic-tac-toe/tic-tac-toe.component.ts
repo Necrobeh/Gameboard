@@ -72,9 +72,9 @@ export class TicTacToeComponent {
 
   selectABox(xPos: number, yPos: number): void {
     this.makeACircle(xPos, yPos);
-    this.NPCPlaysAggressively();
+    this.NPCPlays();
     console.log(this.winStatus);
-    
+
   }
 
   makeACircle(xPos: number, yPos: number): void {
@@ -145,31 +145,39 @@ export class TicTacToeComponent {
     this.winCheck();
   }
 
-  NPCPlaysAggressively(): void {
-    if (this.findOpportunities() !== 0 && this.winStatus === 'none') {
-      this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities()])[0]);
+  NPCPlays(): void {
+    if (this.findOpportunities('player') !== -1) {
+      this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('player')])[0]);
+    } else if (this.findOpportunities('npc') !== 0 && this.winStatus === 'none') {
+      this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('npc')])[0]);
     } else {
       this.NPCPlaysRandom();
     }
     this.winCheck();
   }
 
-  findOpportunities(): number {
+  findOpportunities(target: string): number {
     let lineToFocus: number = 0;
     let bestOpportunities: TicTacToeBox[] = [];
     for (let i = 0; i < this.possibleDirections.length; i++) {
       let opportunity: TicTacToeBox[] = this.possibleDirections[i].filter(box => {
-        return box.activated === 'npc'
+        return box.activated === target;
       })
       let obstruction: TicTacToeBox[] = this.possibleDirections[i].filter(box => {
-        return box.activated === 'player'
+        return box.activated !== target && box.activated !== 'none';
       })
       if (opportunity.length > bestOpportunities.length && obstruction.length === 0) {
         bestOpportunities = opportunity
         lineToFocus = i;
       };
     }
-    return lineToFocus;
+    if (target === 'npc') {
+      return lineToFocus;
+    } else if (target === 'player' && bestOpportunities.length === this.customGridSize - 1) {
+      return lineToFocus;
+    } else {
+      return -1;
+    }
   }
 
 }
