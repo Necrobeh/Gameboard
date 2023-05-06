@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LightsOutGameComponent } from './components/lights-out-game/lights-out-game.component';
 import { PuzzleComponent } from './components/puzzle/puzzle.component';
 import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.component';
+import { WinWindowComponent } from './components/win-window/win-window.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TicTacToeComponent } from './components/tic-tac-toe/tic-tac-toe.compone
     MenuComponent,
     LightsOutGameComponent,
     PuzzleComponent,
-    TicTacToeComponent
+    TicTacToeComponent,
+    WinWindowComponent
   ],
   imports: [
     BrowserModule,

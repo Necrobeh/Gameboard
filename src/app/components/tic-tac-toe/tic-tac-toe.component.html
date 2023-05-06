@@ -17,4 +17,7 @@
     <a [routerLink]="['/home']">Back to Home</a>
 </div>
 
-<button (click)="NPCPlays()">NPC plays</button>
+<app-win-window 
+*ngIf="winStatus !== 'none'"
+[winStatus] = 'winStatus'>
+</app-win-window>
