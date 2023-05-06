@@ -1,11 +1,11 @@
-.page{
+.page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding : 100px
+    padding: 100px
 }
 
-.tic-tac-toe{
+.tic-tac-toe {
     width: 600px;
     height: 600px;
     display: flex;
@@ -13,13 +13,11 @@
     background-color: lightgray;
 }
 
-.box{
-width: 198px;
-height: 198px;
-background-size: 200px;
-border: 1px solid black;
+.box {
+    box-sizing: border-box;
+    border: 1px solid black;
 }
 
-a{
+a {
     margin-top: 10px;
 }
