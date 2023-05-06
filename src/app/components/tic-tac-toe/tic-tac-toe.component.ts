@@ -135,18 +135,14 @@ export class TicTacToeComponent {
 
   win() {
     this.winStatus = 'player'
-    console.log("gagné !");
   }
 
   lose() {
     this.winStatus = 'npc'
-    console.log("perdu !");
   }
 
   exAequo() {
     this.winStatus = 'ex aequo'
-    console.log("ex aequo !");
-    // this.router.navigateByUrl("/home")
   }
 
   NPCTurn() {
