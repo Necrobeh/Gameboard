@@ -12,8 +12,9 @@
             piece.order === 8 ? 'bottom' : '' ||
             piece.order === 9 ? 'bottom right' : '' 
         }" [ngClass]="{'puzzle-piece' : piece.isPiece === true, 'void-piece' : piece.isPiece === false}"
-            (click)="clickOnPiece(piece.xPos, piece.yPos)" 
-            *ngFor="let piece of puzzle"></div>
+            (click)="clickOnPiece(piece.xPos, piece.yPos)" *ngFor="let piece of puzzle"></div>
     </div>
     <a [routerLink]="['/home']">Back to Home</a>
+    <app-win-window *ngIf="winStatus !== 'none'" [winStatus]='winStatus'>
+    </app-win-window>
 </div>

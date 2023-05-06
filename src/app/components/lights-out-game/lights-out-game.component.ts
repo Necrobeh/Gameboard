@@ -19,7 +19,9 @@ export class LightsOutGameComponent {
     new LightsOutSwitch(1, 1, false),
     new LightsOutSwitch(2, 1, false),
     new LightsOutSwitch(3, 1, false)
-  ]
+  ];
+
+  winStatus : string = 'none';
 
   constructor(private router : Router){}
 
@@ -45,9 +47,7 @@ export class LightsOutGameComponent {
   }
 
   win(){
-    setTimeout(()=>
-      this.router.navigateByUrl("/home")
-    )
+    this.winStatus = 'player';
   }
 
   switchLights(xFound : number, yFound : number) : void{
