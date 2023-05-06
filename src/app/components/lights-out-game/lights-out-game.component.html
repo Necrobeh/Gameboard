@@ -1,12 +1,12 @@
 <div class="page">
     <div class="big-square">
-        <div 
-        [ngClass]="{'small-square-ON' : switch.activated, 
-        'small-square-OFF' : switch.activated === false}" 
-        *ngFor="let switch of panel"
-        (click)="switchLights(switch.x, switch.y)">
+        <div [ngClass]="{'small-square-ON' : switch.activated, 
+        'small-square-OFF' : switch.activated === false}" *ngFor="let switch of panel"
+            (click)="switchLights(switch.x, switch.y)">
         </div>
     </div>
 
     <a [routerLink]="['/home']">Back to Home</a>
+    <app-win-window *ngIf="winStatus !== 'none'" [winStatus]='winStatus'>
+    </app-win-window>
 </div>

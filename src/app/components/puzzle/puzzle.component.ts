@@ -23,6 +23,8 @@ export class PuzzleComponent {
 
   selectedPiece: PuzzlePiece = new PuzzlePiece(false, 0, 0, 0);
 
+  winStatus : string = 'none';
+
   constructor(public router: Router) { }
 
   ngOnInit() {
@@ -89,8 +91,7 @@ export class PuzzleComponent {
       }
     }
     if (count === 9) {
-      setTimeout(() =>
-        this.router.navigateByUrl("/home"), 500)
+      this.winStatus === 'player';
     }
   }
 }

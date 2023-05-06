@@ -1,6 +1,6 @@
 [
     {
-        "name" : "menu 1", 
+        "name" : "Games", 
         "infoList" : [
             {
                 "name" : "Lights out !",
@@ -21,7 +21,7 @@
         "infoList" : [
             {
                 "name" : "placeholder",
-                "link" : "/games/lights-out"
+                "link" : ""
             }
         ]
     },
@@ -30,7 +30,7 @@
         "infoList" : [
             {
                 "name" : "placeholder",
-                "link" : "/games/lights-out"
+                "link" : ""
             }
         ]
     }

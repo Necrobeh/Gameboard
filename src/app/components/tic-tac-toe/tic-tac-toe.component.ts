@@ -9,7 +9,7 @@ import { TicTacToeBox } from 'src/app/models/tic-tac-toe-box.model';
 })
 export class TicTacToeComponent {
 
-  customGridSize: number = 4;
+  customGridSize: number = 3;
 
   customGrid: TicTacToeBox[] = [];
 
@@ -157,11 +157,11 @@ export class TicTacToeComponent {
   NPCPlays(): void {
     this.isThereFreeBoxes();
     if (this.winStatus === 'none') {
-      if (this.findOpportunities('player') !== -1) {
-        this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('player')])[0]);
-      } else if (this.findOpportunities('npc') !== 0 && this.winStatus === 'none') {
+      if (this.findOpportunities('npc') !== 0 && this.winStatus === 'none') {
         this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('npc')])[0]);
-      } else {
+      }else if(this.findOpportunities('player') !== -1) {
+        this.makeACross(this.checkfreeBoxes(this.possibleDirections[this.findOpportunities('player')])[0]);
+      }else{
         this.NPCPlaysRandom();
       }
       this.winCheck();

@@ -1,0 +1,5 @@
+<p *ngIf="winStatus === 'player'">Vous avez gagné !</p>
+<p *ngIf="winStatus === 'npc'">Vous avez perdu !</p>
+<p *ngIf="winStatus === 'ex aequo'">Ex aequo !</p>
+<button (click)="goToHome()">Retour à l'accueil</button>
+<button (click)="reload()">Rejouer !</button>
