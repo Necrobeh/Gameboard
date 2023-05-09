@@ -19,13 +19,13 @@ export class TicTacToeComponent {
 
   constructor(public router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.applyCustomGrid();
     this.applyPossibleStraightDirections();
     this.applyPossibleDiagonalDirections();
   }
 
-  applyCustomGrid() {
+  applyCustomGrid(): void {
     for (let i = 0; i < this.customGridSize; i++) {
       for (let j = 0; j < this.customGridSize; j++) {
         this.customGrid.push(new TicTacToeBox(i + 1, j + 1, "none"))
@@ -33,7 +33,7 @@ export class TicTacToeComponent {
     }
   }
 
-  applyPossibleStraightDirections() {
+  applyPossibleStraightDirections(): void {
     for (let i = 0; i < this.customGridSize; i++) {
 
       const xAxis: TicTacToeBox[] =
@@ -47,7 +47,7 @@ export class TicTacToeComponent {
     }
   }
 
-  applyPossibleDiagonalDirections() {
+  applyPossibleDiagonalDirections(): void {
     const diag1: TicTacToeBox[] = [];
     const diag2: TicTacToeBox[] = [];
 
@@ -92,7 +92,7 @@ export class TicTacToeComponent {
     box.activated = 'npc';
   }
 
-  isThereFreeBoxes() {
+  isThereFreeBoxes(): void {
     let isThereFreeboxes: TicTacToeBox[] = (this.customGrid.filter(box => {
       return box.activated === 'none'
     }))
@@ -112,7 +112,7 @@ export class TicTacToeComponent {
     return randomBox;
   }
 
-  winCheck() {
+  winCheck(): void {
     const decisivePlay: TicTacToeBox[][] = [];
     for (let i = 0; i < this.possibleDirections.length; i++) {
       if (this.isSameValues(this.possibleDirections[i])) {
@@ -133,25 +133,20 @@ export class TicTacToeComponent {
     })
   }
 
-  win() {
+  win(): void {
     this.winStatus = 'player'
   }
 
-  lose() {
+  lose(): void {
     this.winStatus = 'npc'
   }
 
-  exAequo() {
+  exAequo(): void {
     this.winStatus = 'ex aequo'
-  }
-
-  NPCTurn() {
-
   }
 
   NPCPlaysRandom(): void {
     this.makeACross(this.checkfreeBoxes(this.customGrid)[this.selectRandomlyABoxAmongFreeBoxes()]);
-    this.winCheck();
   }
 
   NPCPlays(): void {
